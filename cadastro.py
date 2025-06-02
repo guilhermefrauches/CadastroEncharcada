@@ -32,6 +32,14 @@ def cadastrar():
             print("Telefone inválido! Tente novamente.\n")
 
     while True:
+        regiao = input("Região (Norte, Nordeste, Sul, Sudeste e Centro-Oeste): ").strip().lower()
+        if regiao in ['norte', 'nordeste', 'sul', 'sudeste', 'centro-oeste']:
+            regiao = regiao.capitalize()
+            break
+        else:
+            print("Região inválida! Tente novamente.\n")
+
+    while True:
         cep = input("CEP: ")
         if validar_cep(cep):
             break
@@ -46,8 +54,10 @@ def cadastrar():
         "cpf": cpf,
         "email": email,
         "telefone": telefone,
+        "região": regiao,
         "cep": cep,
         "preferencia": preferencia
+        
     }
 
     usuarios.append(usuario)
@@ -56,5 +66,20 @@ def cadastrar():
     print(f"CPF: {usuario['cpf']}")
     print(f"Email: {usuario['email']}")
     print(f"Telefone: {usuario['telefone']}")
+    print(f"Região: {usuario['região']}")
     print(f"CEP: {usuario['cep']}")
     print(f"Preferência de aviso: {usuario['preferencia']}")
+     
+    print("\n📢 Aviso Regional:")
+    regiao = regiao.lower()
+    
+    if regiao == 'sudeste':
+        print("Atenção Região Sudeste: Chuva Forte em Áreas Urbanas.")
+    elif regiao == 'nordeste':
+        print("Atenção Região Nordeste: Acúmulo de Água em Regiões Costeiras.")
+    elif regiao == 'norte':
+        print("Atenção Região Norte: Nível dos Rios em Elevação.")
+    elif regiao == 'sul':
+        print("Atenção Região Sul: Possibilidade de Alagamentos Localizados.")
+    elif regiao == 'centro-oeste':
+        print("Aviso Região Centro-Oeste: Chuva Moderada com Risco Baixo de Alagamento.")
