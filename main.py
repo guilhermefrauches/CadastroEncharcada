@@ -1,7 +1,11 @@
 from cadastro import cadastrar
 
-print("Olá, bem-vindo ao sistema de cadastro da Encharcada!")
-print("Por favor, preencha as informações abaixo para se cadastrar.\n")
+print("=============================================================")
+print("=============================================================")
+print("    Olá, bem-vindo ao sistema de cadastro da Encharcada!")
+print(" Por favor, preencha as informações abaixo para se cadastrar")
+print("=============================================================")
+print("=============================================================\n")
 
 while True:
     cadastrar()
