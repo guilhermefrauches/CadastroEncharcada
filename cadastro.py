@@ -33,7 +33,7 @@ def cadastrar():
 
     while True:
         regiao = input("Região (Norte, Nordeste, Sul, Sudeste e Centro-Oeste): ").strip().lower()
-        if regiao in ['norte', 'nordeste', 'sul', 'sudeste', 'centro-oeste']:
+        if regiao in ['norte', 'nordeste', 'sul', 'sudeste', 'centro-oeste','centro oeste']:
             regiao = regiao.capitalize()
             break
         else:
@@ -45,8 +45,13 @@ def cadastrar():
             break
         else:
             print("CEP inválido! Tente novamente.\n")
-
-    preferencia = input("Preferência de aviso (email/sms/ambos): ")
+    
+    while True:
+        preferencia = input("Preferência de aviso (whatsapp/sms/app): ").strip().lower()
+        if preferencia in ['whatsapp', 'sms', 'app']:
+            break
+        else:
+            print("Preferência inválida! Tente novamente.\n")
 
 
     usuario = {
