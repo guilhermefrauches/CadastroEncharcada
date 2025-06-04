@@ -1,4 +1,4 @@
-from validadores import validar_cpf, validar_telefone,validar_cep,validar_nome_completo
+from validadores import validar_cpf, validar_telefone,validar_cep,validar_nome_completo, identificar_regiao_por_ddd
 import re
 
 #cores
@@ -8,6 +8,7 @@ BLUE    = "\033[34m"
 RESET   = "\033[0m"
 WHITE_BOLD = "\033[1;37m"
 YELLOW  = "\033[33m"
+DARK_GREEN = "\033[38;5;22m"
 
 usuarios = []
 
@@ -41,13 +42,11 @@ def cadastrar():
         else:
             print(f"{RED}Telefone inválido! Tente novamente.\n {RESET}")
 
-    while True:
-        regiao = input(f"{WHITE_BOLD}Região (Norte, Nordeste, Sul, Sudeste e Centro-Oeste): {RESET}").strip().lower()
-        if regiao in ['norte', 'nordeste', 'sul', 'sudeste', 'centro-oeste','centro oeste']:
-            regiao = regiao.capitalize()
-            break
-        else:
-            print(f"{RED}Região inválida! Verifique se escreveu corretamente.\n {RESET}")
+    regiao = identificar_regiao_por_ddd(telefone)
+    if not regiao:
+        print(f"{RED}DDD não reconhecido. Região será marcada como 'Desconhecida'.{RESET}")  
+        regiao = "Desconhecida"
+
 
     while True:
         cep = input(f"{WHITE_BOLD}CEP: {RESET}")
@@ -72,12 +71,12 @@ def cadastrar():
         "região": regiao,
         "cep": cep,
         "preferencia": preferencia
-        
+
     }
 
     usuarios.append(usuario)
 
-    print(f"\n{WHITE_BOLD}Usuário cadastrado com sucesso!{RESET}")
+    print(f"\n{DARK_GREEN}Usuário cadastrado com sucesso!{RESET}")
     print(f"{WHITE_BOLD}Nome: {usuario['nome']}{RESET}")
     print(f"{WHITE_BOLD}CPF: {usuario['cpf']}{RESET}")
     print(f"{WHITE_BOLD}Email: {usuario['email']}{RESET}")
@@ -85,8 +84,8 @@ def cadastrar():
     print(f"{WHITE_BOLD}Região: {usuario['região']}{RESET}")
     print(f"{WHITE_BOLD}CEP: {usuario['cep']}{RESET}")
     print(f"{WHITE_BOLD}Preferência de aviso: {usuario['preferencia']}{RESET}")
-
      
+    
     print(f"\n📢 {YELLOW}Aviso Regional:{RESET}")
     regiao = regiao.lower()
     
