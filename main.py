@@ -1,15 +1,10 @@
 from cadastro import cadastrar
 
-print("=============================================================")
-print("=============================================================")
-print("    Olá, bem-vindo ao sistema de cadastro da Encharcada!")
-print(" Por favor, preencha as informações abaixo para se cadastrar")
-print("=============================================================")
-print("=============================================================\n")
+WHITE_BOLD = "\033[1;37m"
+RESET   = "\033[0m"
 
-while True:
-    cadastrar()
-    continuar = input("\nDeseja cadastrar outro usuário? (s/n): ").strip().lower()
-    if continuar != 's':
-        print("Obrigado por se cadastrar! Até logo!")
-        break
+print(f"{WHITE_BOLD}Olá, bem-vindo ao sistema de cadastro da Encharcada!{RESET}")
+print(f"{WHITE_BOLD}Por favor, preencha as informações abaixo para se cadastrar{RESET}\n")
+
+cadastrar()
+print (f"{WHITE_BOLD}Obrigado por se cadastrar! Até logo!{RESET}\n")

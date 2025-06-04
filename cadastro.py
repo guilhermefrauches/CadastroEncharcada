@@ -1,62 +1,72 @@
 from validadores import validar_cpf, validar_telefone,validar_cep,validar_nome_completo
+import re
+
+#cores
+RED     = "\033[31m"
+GREEN   = "\033[32m"
+BLUE    = "\033[34m"
+RESET   = "\033[0m"
+WHITE_BOLD = "\033[1;37m"
+YELLOW  = "\033[33m"
 
 usuarios = []
 
 def cadastrar():
     while True:
-        nome = input("Nome completo: ")
+        nome = input(f"{WHITE_BOLD}Nome completo: {RESET}")
         if validar_nome_completo(nome):
             break
         else:
-            print("Nome inválido! Tente novamente.\n")
+            print(f"{RED}Formato inválido! Tente Nome e Sobrenome.\n{RESET}")
 
     while True:
-        cpf = input("CPF: ")
-        if validar_cpf(cpf):
-            break
+        cpf = input(f"{WHITE_BOLD}CPF: {RESET}")
+        cpf_limpo = re.sub(r'\D', '', cpf)
+        if validar_cpf(cpf_limpo):
+         break
         else:
-            print("CPF inválido! Tente novamente.\n")
+            print(f"{RED}CPF inválido! Tente novamente.\n{RESET}")
 
     while True:
-        email = input("Email: ")
+        email = input(f"{WHITE_BOLD}Email: {RESET}")
         if '@' in email and '.' in email:
             break
         else:
-            print("Email inválido! Tente novamente.\n")
+            print(f"{RED}Email inválido! Tente novamente.\n {RESET}")
     
     while True:
-        telefone = input("Telefone: ")
+        telefone = input(f"{WHITE_BOLD}Telefone: {RESET}")
         if validar_telefone(telefone):
             break
         else:
-            print("Telefone inválido! Tente novamente.\n")
+            print(f"{RED}Telefone inválido! Tente novamente.\n {RESET}")
 
     while True:
-        regiao = input("Região (Norte, Nordeste, Sul, Sudeste e Centro-Oeste): ").strip().lower()
+        regiao = input(f"{WHITE_BOLD}Região (Norte, Nordeste, Sul, Sudeste e Centro-Oeste): {RESET}").strip().lower()
         if regiao in ['norte', 'nordeste', 'sul', 'sudeste', 'centro-oeste','centro oeste']:
             regiao = regiao.capitalize()
             break
         else:
-            print("Região inválida! Tente novamente.\n")
+            print(f"{RED}Região inválida! Verifique se escreveu corretamente.\n {RESET}")
 
     while True:
-        cep = input("CEP: ")
+        cep = input(f"{WHITE_BOLD}CEP: {RESET}")
         if validar_cep(cep):
             break
         else:
-            print("CEP inválido! Tente novamente.\n")
+            print(f"{RED}CEP inválido! Tente novamente.\n {RESET}")
     
     while True:
-        preferencia = input("Preferência de aviso (whatsapp/sms/app): ").strip().lower()
+        preferencia = input(f"{WHITE_BOLD}Preferência de aviso ({GREEN}whatsapp{RESET}{WHITE_BOLD}/sms/{RESET}{BLUE}app{RESET}): ").strip().lower()
         if preferencia in ['whatsapp', 'sms', 'app']:
             break
         else:
-            print("Preferência inválida! Tente novamente.\n")
+            print(f"{RED}Preferência inválida! Tente novamente.\n{RESET}")
 
 
     usuario = {
         "nome": nome,
-        "cpf": cpf,
+        "cpf": cpf_limpo,
         "email": email,
         "telefone": telefone,
         "região": regiao,
@@ -66,25 +76,27 @@ def cadastrar():
     }
 
     usuarios.append(usuario)
-    print("\nUsuário cadastrado com sucesso!")
-    print(f"Nome: {usuario['nome']}")
-    print(f"CPF: {usuario['cpf']}")
-    print(f"Email: {usuario['email']}")
-    print(f"Telefone: {usuario['telefone']}")
-    print(f"Região: {usuario['região']}")
-    print(f"CEP: {usuario['cep']}")
-    print(f"Preferência de aviso: {usuario['preferencia']}")
+
+    print(f"\n{WHITE_BOLD}Usuário cadastrado com sucesso!{RESET}")
+    print(f"{WHITE_BOLD}Nome: {usuario['nome']}{RESET}")
+    print(f"{WHITE_BOLD}CPF: {usuario['cpf']}{RESET}")
+    print(f"{WHITE_BOLD}Email: {usuario['email']}{RESET}")
+    print(f"{WHITE_BOLD}Telefone: {usuario['telefone']}{RESET}")
+    print(f"{WHITE_BOLD}Região: {usuario['região']}{RESET}")
+    print(f"{WHITE_BOLD}CEP: {usuario['cep']}{RESET}")
+    print(f"{WHITE_BOLD}Preferência de aviso: {usuario['preferencia']}{RESET}")
+
      
-    print("\n📢 Aviso Regional:")
+    print(f"\n📢 {YELLOW}Aviso Regional:{RESET}")
     regiao = regiao.lower()
     
     if regiao == 'sudeste':
-        print("Atenção Região Sudeste: Chuva Forte em Áreas Urbanas.")
+        print(f"{WHITE_BOLD}Atenção Região Sudeste: Chuva Forte em Áreas Urbanas.{RESET}")
     elif regiao == 'nordeste':
-        print("Atenção Região Nordeste: Acúmulo de Água em Regiões Costeiras.")
+        print(f"{WHITE_BOLD}Atenção Região Nordeste: Acúmulo de Água em Regiões Costeiras.{RESET}")
     elif regiao == 'norte':
-        print("Atenção Região Norte: Nível dos Rios em Elevação.")
+        print(f"{WHITE_BOLD}Atenção Região Norte: Nível dos Rios em Elevação.{RESET}")
     elif regiao == 'sul':
-        print("Atenção Região Sul: Possibilidade de Alagamentos Localizados.")
+        print(f"{WHITE_BOLD}Atenção Região Sul: Possibilidade de Alagamentos Localizados.{RESET}")
     elif regiao == 'centro-oeste':
-        print("Aviso Região Centro-Oeste: Chuva Moderada com Risco Baixo de Alagamento.")
+        print(f"{WHITE_BOLD}Aviso Região Centro-Oeste: Chuva Moderada com Risco Baixo de Alagamento.{RESET}")
