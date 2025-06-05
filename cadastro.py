@@ -9,6 +9,7 @@ RESET   = "\033[0m"
 WHITE_BOLD = "\033[1;37m"
 YELLOW  = "\033[33m"
 DARK_GREEN = "\033[38;5;22m"
+AZUL_B = "\033[1;34m"
 
 usuarios = []
 
@@ -76,14 +77,14 @@ def cadastrar():
 
     usuarios.append(usuario)
 
-    print(f"\n{DARK_GREEN}Usuário cadastrado com sucesso!{RESET}")
-    print(f"{WHITE_BOLD}Nome: {usuario['nome']}{RESET}")
-    print(f"{WHITE_BOLD}CPF: {usuario['cpf']}{RESET}")
-    print(f"{WHITE_BOLD}Email: {usuario['email']}{RESET}")
-    print(f"{WHITE_BOLD}Telefone: {usuario['telefone']}{RESET}")
-    print(f"{WHITE_BOLD}Região: {usuario['região']}{RESET}")
-    print(f"{WHITE_BOLD}CEP: {usuario['cep']}{RESET}")
-    print(f"{WHITE_BOLD}Preferência de aviso: {usuario['preferencia']}{RESET}")
+    print(f"\n{GREEN}Usuário cadastrado com sucesso!{RESET}")
+    print(f"{AZUL_B}Nome: {RESET}{WHITE_BOLD}{usuario['nome']}{RESET}")
+    print(f"{AZUL_B}CPF: {RESET}{WHITE_BOLD}{usuario['cpf']}{RESET}")
+    print(f"{AZUL_B}Email: {RESET}{WHITE_BOLD}{usuario['email']}{RESET}")
+    print(f"{AZUL_B}Telefone: {RESET}{WHITE_BOLD}{usuario['telefone']}{RESET}")
+    print(f"{AZUL_B}Região: {RESET}{WHITE_BOLD}{usuario['região']}{RESET}")
+    print(f"{AZUL_B}CEP: {RESET}{WHITE_BOLD}{usuario['cep']}{RESET}")
+    print(f"{AZUL_B}Preferência de aviso: {RESET}{WHITE_BOLD}{usuario['preferencia']}{RESET}")
      
     
     print(f"\n📢 {YELLOW}Aviso Regional:{RESET}")
